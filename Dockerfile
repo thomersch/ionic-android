@@ -1,11 +1,10 @@
 FROM circleci/android:api-23-alpha
 
-ENV NODE_VERSION=10.6.0
-ENV ARCH=x64
-RUN curl -fsSLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH.tar.xz" \
-	&& tar -xJf "node-v$NODE_VERSION-linux-$ARCH.tar.xz" -C /usr/local --strip-components=1 --no-same-owner \
-	&& rm "node-v$NODE_VERSION-linux-$ARCH.tar.xz" \
-	&& ln -s /usr/local/bin/node /usr/local/bin/nodejs
+ARG NODE_VERSION=10.6.0
+RUN curl -fsSLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz"
+RUN tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 --no-same-owner
+RUN rm "node-v$NODE_VERSION-linux-x64.tar.xz"
+RUN ln -s /usr/local/bin/node /usr/local/bin/nodejs
 
 # Install Cordova and Ionic
 RUN sudo npm install -g ionic cordova@8.0.0 && cordova telemetry off && CI=true ionic config set -g daemon.updates false && ionic config set -g telemetry false
