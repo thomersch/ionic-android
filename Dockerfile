@@ -1,7 +1,8 @@
 FROM circleci/android:api-23-alpha
 
 ARG NODE_VERSION=10.6.0
-RUN curl -fsSLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz"
+RUN mkdir -p /tmp && cd /tmp
+RUN curl -LO --compressed "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz"
 RUN tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 --no-same-owner
 RUN rm "node-v$NODE_VERSION-linux-x64.tar.xz"
 RUN ln -s /usr/local/bin/node /usr/local/bin/nodejs
