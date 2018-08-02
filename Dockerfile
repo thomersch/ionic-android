@@ -15,4 +15,4 @@ ARG GRADLE_VERSION=4.5.1
 RUN sudo curl https://downloads.gradle.org/distributions/gradle-$GRADLE_VERSION-bin.zip > /tmp/gradle-$GRADLE_VERSION-bin.zip && sudo unzip /tmp/gradle-$GRADLE_VERSION-bin.zip -d /tmp && rm /tmp/gradle-$GRADLE_VERSION-bin.zip && sudo mv /tmp/gradle-$GRADLE_VERSION /opt/gradle
 
 # Install Google API Client
-RUN sudo pip install google-api-python-client
+RUN sudo pip install google-api-python-client oauth2client
